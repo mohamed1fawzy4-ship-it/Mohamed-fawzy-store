@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mohamed Fawzy Store</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+color:#222;
+}
+
+header{
+background:#111;
+color:white;
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:23px;
+font-weight:bold;
+}
+
+.cart-btn{
+background:white;
+color:#111;
+border:0;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.hero{
+background:linear-gradient(135deg,#111,#333);
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.hero h1{
+font-size:38px;
+margin:0 0 10px;
+}
+
+.hero p{
+color:#ddd;
+font-size:18px;
+}
+
+.search{
+background:white;
+padding:20px;
+text-align:center;
+}
+
+.search input{
+width:90%;
+max-width:500px;
+padding:13px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+}
+
+.products{
+max-width:1100px;
+margin:auto;
+padding:30px 20px;
+
+display:grid;
+grid-template-columns:repeat(
+auto-fit,
+minmax(230px,1fr)
+);
+
+gap:25px;
+}
+
+.product{
+background:white;
+border-radius:15px;
+padding-bottom:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.shoe{
+height:190px;
+background:#eee;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:80px;
+}
+
+.product h3{
+margin:15px 0 8px;
+}
+
+.price{
+font-size:21px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.buy{
+background:#111;
+color:white;
+border:0;
+padding:13px 28px;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+.buy:hover{
+background:#333;
+}
+
+/* صفحة الشراء */
+
+.checkout{
+display:none;
+max-width:600px;
+margin:35px auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.checkout h2{
+text-align:center;
+}
+
+.checkout input,
+.checkout select,
+.checkout textarea{
+width:100%;
+padding:13px;
+margin:8px 0 15px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+.confirm{
+width:100%;
+background:#25D366;
+color:white;
+border:0;
+padding:15px;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+.back{
+width:100%;
+margin-top:10px;
+background:#111;
+color:white;
+border:0;
+padding:12px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.order-info{
+background:#f5f5f5;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+footer{
+background:#111;
+color:#aaa;
+text-align:center;
+padding:30px 15px;
+margin-top:40px;
+}
+
+footer strong{
+color:white;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+👟 Mohamed Fawzy Store
+</div>
+
+<button class="cart-btn">
+🛒 متجرنا
+</button>
+
+</header>
+
+
+<section class="hero">
+
+<h1>
+Mohamed Fawzy Store 👟
+</h1>
+
+<p>
+أحدث الكوتشيات بأسعار مميزة 🔥
+</p>
+
+</section>
+
+
+<div class="search">
+
+<input
+id="search"
+type="text"
+placeholder="🔎 ابحث عن كوتشي..."
+onkeyup="searchProducts()"
+>
+
+</div>
+
+
+<!-- المنتجات -->
+
+<section
+class="products"
+id="products"
+>
+
+
+<div class="product" data-name="Sport Black">
+
+<div class="shoe">
+👟
+</div>
+
+<h3>
+Sport Black
+</h3>
+
+<div class="price">
+850 جنيه
+</div>
+
+<button
+class="buy"
+onclick="buyNow('Sport Black',850)"
+>
+اشتري الآن 🛒
+</button>
+
+</div>
+
+
+<div class="product" data-name="Running Pro">
+
+<div class="shoe">
+👟
+</div>
+
+<h3>
+Running Pro
+</h3>
+
+<div class="price">
+950 جنيه
+</div>
+
+<button
+class="buy"
+onclick="buyNow('Running Pro',950)"
+>
+اشتري الآن 🛒
+</button>
+
+</div>
+
+
+<div class="product" data-name="Classic White">
+
+<div class="shoe">
+👟
+</div>
+
+<h3>
+Classic White
+</h3>
+
+<div class="price">
+750 جنيه
+</div>
+
+<button
+class="buy"
+onclick="buyNow('Classic White',750)"
+>
+اشتري الآن 🛒
+</button>
+
+</div>
+
+
+<div class="product" data-name="Air Max">
+
+<div class="shoe">
+👟
+</div>
+
+<h3>
+Air Max
+</h3>
+
+<div class="price">
+1200 جنيه
+</div>
+
+<button
+class="buy"
+onclick="buyNow('Air Max',1200)"
+>
+اشتري الآن 🛒
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- صفحة إتمام الشراء -->
+
+<section
+class="checkout"
+id="checkout"
+>
+
+<h2>
+🛍️ إتمام الطلب
+</h2>
+
+
+<div class="order-info">
+
+<p>
+<strong>المنتج:</strong>
+
+<span id="productName">
+</span>
+</p>
+
+<p>
+<strong>السعر:</strong>
+
+<span id="productPrice">
+</span>
+جنيه
+</p>
+
+</div>
+
+
+<label>
+المقاس:
+</label>
+
+<select id="size">
+
+<option value="">
+اختر المقاس
+</option>
+
+<option>39</option>
+<option>40</option>
+<option>41</option>
+<option>42</option>
+<option>43</option>
+<option>44</option>
+<option>45</option>
+
+</select>
+
+
+<label>
+الاسم:
+</label>
+
+<input
+id="customerName"
+type="text"
+placeholder="اكتب اسمك"
+>
+
+
+<label>
+رقم الهاتف:
+</label>
+
+<input
+id="customerPhone"
+type="tel"
+placeholder="01xxxxxxxxx"
+>
+
+
+<label>
+العنوان:
+</label>
+
+<textarea
+id="address"
+rows="4"
+placeholder="اكتب عنوان التوصيل بالتفصيل"
+></textarea>
+
+
+<button
+class="confirm"
+onclick="confirmOrder()"
+>
+✅ تأكيد الطلب عبر واتساب
+</button>
+
+
+<button
+class="back"
+onclick="backToProducts()"
+>
+⬅️ العودة للمنتجات
+</button>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 Mohamed Fawzy Store
+</p>
+
+<p>
+تحت إشراف
+<strong>
+الأستاذ فوزي صلاح محمد
+</strong>
+</p>
+
+</footer>
+
+
+
+<script>
+
+
+let selectedProduct = "";
+let selectedPrice = 0;
+
+
+/* عند الضغط على اشتري الآن */
+
+function buyNow(name,price){
+
+selectedProduct = name;
+
+selectedPrice = price;
+
+
+/* إظهار بيانات المنتج */
+
+document.getElementById("productName")
+.textContent = name;
+
+
+document.getElementById("productPrice")
+.textContent = price;
+
+
+/* إخفاء المنتجات */
+
+document.getElementById("products")
+.style.display = "none";
+
+
+/* إظهار صفحة الشراء */
+
+document.getElementById("checkout")
+.style.display = "block";
+
+
+/* النزول لصفحة الشراء */
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* تأكيد الطلب */
+
+function confirmOrder(){
+
+
+let name =
+document.getElementById("customerName")
+.value;
+
+
+let phone =
+document.getElementById("customerPhone")
+.value;
+
+
+let address =
+document.getElementById("address")
+.value;
+
+
+let size =
+document.getElementById("size")
+.value;
+
+
+/* التأكد من البيانات */
+
+if(
+name === "" ||
+phone === "" ||
+address === "" ||
+size === ""
+){
+
+alert(
+"من فضلك املأ كل البيانات قبل تأكيد الطلب ❤️"
+);
+
+return;
+
+}
+
+
+/* إنشاء رسالة واتساب */
+
+let message =
+
+"السلام عليكم 👋%0A%0A"+
+
+"🛒 طلب جديد من Mohamed Fawzy Store%0A%0A"+
+
+"👟 المنتج: "+
+selectedProduct+
+"%0A"+
+
+"💰 السعر: "+
+selectedPrice+
+" جنيه%0A"+
+
+"📏 المقاس: "+
+size+
+"%0A"+
+
+"👤 الاسم: "+
+name+
+"%0A"+
+
+"📞 الهاتف: "+
+phone+
+"%0A"+
+
+"📍 العنوان: "+
+address;
+
+
+/* رقم المتجر */
+
+let storePhone =
+"201033884322";
+
+
+/* فتح واتساب */
+
+window.open(
+
+"https://wa.me/"+
+storePhone+
+"?text="+
+message,
+
+"_blank"
+
+);
+
+}
+
+
+/* العودة للمنتجات */
+
+function backToProducts(){
+
+document.getElementById("checkout")
+.style.display="none";
+
+
+document.getElementById("products")
+.style.display="grid";
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* البحث */
+
+function searchProducts(){
+
+let search =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+
+let products =
+document.querySelectorAll(".product");
+
+
+products.forEach(product=>{
+
+let name =
+product.dataset.name
+.toLowerCase();
+
+
+if(name.includes(search)){
+
+product.style.display="block";
+
+}else{
+
+product.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
